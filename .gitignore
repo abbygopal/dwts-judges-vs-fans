@@ -1,0 +1,17 @@
+# .gitignore = a list of files and folders Git should NEVER track or upload.
+# Lines starting with # are comments (notes for humans); Git skips them.
+
+# The original COMAP data. It's someone else's dataset, so we don't
+# re-publish it on GitHub. The README will explain where to download it.
+data/raw/
+
+# SQLite database files. Our script can rebuild them from the CSV anytime,
+# so there's no reason to store them (and they can get large).
+*.db
+
+# The virtual environment: thousands of library files that are specific to
+# your computer. Anyone can recreate it with requirements.txt.
+.venv/
+
+# Python's automatic cache files. They're created on their own and aren't useful to save.
+__pycache__/
