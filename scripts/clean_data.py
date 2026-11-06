@@ -112,6 +112,13 @@ rows_after_dropping_missing = len(scores)
 #     couple's last real week, so dropping them can't remove a real score.)
 scores = scores[scores["score"] > 0]
 
+# (c) Scores ABOVE 10 are kept on purpose. COMAP's problem PDF says bonus
+#     points (dance-offs, etc.) were spread evenly across the judge scores in
+#     some weeks, and team-dance scores were averaged with individual dances.
+#     That explains values like 11.25 and decimals like 8.125 or 9.3333.
+#     Bonus points counted toward the judges' total on the show, and our
+#     questions compare couples WITHIN the same week, so keeping them is fair.
+
 # Put the columns in a sensible order and sort the rows so the table is easy to read.
 scores = scores[["couple_id", "season", "week", "judge", "score"]]
 scores = scores.sort_values(["season", "couple_id", "week", "judge"])
