@@ -57,7 +57,14 @@ couples = raw[[
     "celebrity_age_during_season",
     "results",                  # text, e.g. "1st Place", "Eliminated Week 3", "Withdrew"
     "placement",                # number: 1 = winner
-]]
+]].copy()   # .copy() makes this its own table, so changing it won't touch `raw`
+
+# Fix an inconsistent label: the raw data spells the same industry two ways
+# ("Social Media Personality" and "Social media personality"). SQL would treat
+# those as two different groups, so we change the lowercase one to match.
+couples["celebrity_industry"] = couples["celebrity_industry"].replace(
+    {"Social media personality": "Social Media Personality"}
+)
 
 
 # =============================================================================
@@ -160,9 +167,13 @@ print("\n=== Missing values in the couples table ===")
 # isna().sum() counts the empty cells in each column.
 print(couples.isna().sum().to_string())
 
+print("\n=== Industries (number of celebrities) ===")
+print(f"Different industries: {couples['celebrity_industry'].nunique()}")
+print(f"Social Media Personality: {(couples['celebrity_industry'] == 'Social Media Personality').sum()}")
+
 print("\n=== Score range ===")
 print(f"Lowest score:  {scores['score'].min()}")
 print(f"Highest score: {scores['score'].max()}")
-print(f"Scores above 10 (to investigate with the PDF): {(scores['score'] > 10).sum()}")
+print(f"Scores above 10 (bonus points, kept on purpose): {(scores['score'] > 10).sum()}")
 
 print(f"\nSaved to {DB_PATH}")

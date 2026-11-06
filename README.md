@@ -7,7 +7,9 @@ This project uses 34 U.S. seasons of judge scores to look at how often the fans 
 
 1. **How often does the judges' favorite actually win the season?**
 2. **How often do fans save the lowest-scored couple?** In what % of weeks was the couple with the lowest judge score *not* eliminated?
-3. **Did the Season 28 rule change reduce upsets?** After Bobby Bones won Season 27 with low judge scores, the judges began choosing which of the bottom two couples goes home.
+3. **Which kinds of celebrities do fans save?** When a couple had the lowest judge score, how often were they saved, broken down by celebrity industry (actor, athlete, TV personality, and so on)?
+
+*Considered and set aside:* whether the "judges' save" (Seasons 28–31, when judges picked who left from the bottom two) reduced upsets. With only 4 seasons, and no data on who was in the bottom two, the data can't answer it reliably.
 
 ## Data
 
