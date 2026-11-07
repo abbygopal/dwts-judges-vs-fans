@@ -1,0 +1,311 @@
+season,week,celebrity_name,celebrity_industry,was_eliminated
+1,2,Evander Holyfield,Athlete,0
+1,3,Evander Holyfield,Athlete,1
+1,4,Joey McIntyre,Singer/Rapper,0
+2,1,Master P,Singer/Rapper,0
+2,2,Master P,Singer/Rapper,0
+2,3,Master P,Singer/Rapper,0
+2,4,Master P,Singer/Rapper,1
+2,5,Tia Carrere,Actor/Actress,1
+2,6,George Hamilton,Actor/Actress,1
+2,6,Jerry Rice,Athlete,0
+2,7,Jerry Rice,Athlete,0
+3,1,Tucker Carlson,TV Personality,1
+3,2,Jerry Springer,TV Personality,0
+3,3,Emmitt Smith,Athlete,0
+3,4,Sara Evans,Singer/Rapper,0
+3,5,Sara Evans,Singer/Rapper,0
+3,5,Jerry Springer,TV Personality,0
+3,7,Jerry Springer,TV Personality,1
+3,8,Monique Coleman,Actor/Actress,1
+4,2,Clyde Drexler,Athlete,0
+4,3,Clyde Drexler,Athlete,0
+4,4,Clyde Drexler,Athlete,0
+4,5,Clyde Drexler,Athlete,1
+4,6,John Ratzenberger,Actor/Actress,0
+4,7,Billy Ray Cyrus,Singer/Rapper,0
+4,8,Billy Ray Cyrus,Singer/Rapper,1
+4,9,Ian Ziering,Actor/Actress,1
+5,1,Josie Maran,Model,1
+5,2,Wayne Newton,Singer/Rapper,0
+5,3,Wayne Newton,Singer/Rapper,1
+5,4,Mark Cuban,TV Personality,0
+5,5,Marie Osmond,Singer/Rapper,0
+5,5,Mark Cuban,TV Personality,1
+5,6,Jane Seymour,Actor/Actress,0
+5,7,Jane Seymour,Actor/Actress,1
+5,8,Marie Osmond,Singer/Rapper,0
+5,9,Marie Osmond,Singer/Rapper,0
+6,2,Monica Seles,Athlete,1
+6,3,Marissa Jaret Winokur,Actor/Actress,0
+6,4,Adam Carolla,Radio Personality,1
+6,5,Priscilla Presley,Actor/Actress,1
+6,6,Marlee Matlin,Actor/Actress,1
+6,7,Cristian de la Fuente,Actor/Actress,0
+6,8,Marissa Jaret Winokur,Actor/Actress,0
+6,9,Marissa Jaret Winokur,Actor/Actress,1
+7,1,Jeffrey Ross,Comedian,1
+7,2,Cloris Leachman,Actor/Actress,0
+7,4,Rocco DiSpirito,TV Personality,1
+7,5,Cloris Leachman,Actor/Actress,0
+7,5,Lance Bass,Singer/Rapper,0
+7,6,Cloris Leachman,Actor/Actress,1
+7,7,Warren Sapp,Athlete,0
+7,8,Cody Linley,Actor/Actress,0
+7,8,Maurice Greene,Athlete,1
+7,9,Cody Linley,Actor/Actress,1
+8,2,Steve-O,TV Personality,0
+8,3,Steve Wozniak,Entrepreneur,0
+8,4,Steve Wozniak,Entrepreneur,1
+8,5,Steve-O,TV Personality,0
+8,6,Steve-O,TV Personality,1
+8,7,Lawrence Taylor,Athlete,1
+8,8,Melissa Rycroft,TV Personality,0
+8,9,Ty Murray,Athlete,0
+8,10,Ty Murray,Athlete,1
+9,1,Ashley Hamiliton,Actor/Actress,1
+9,1,Macy Gray,Singer/Rapper,1
+9,2,Kathy Ireland,Model,1
+9,2,Tom DeLay,Politician,0
+9,3,Michael Irvin,Athlete,0
+9,4,Louie Vito,Athlete,0
+9,4,Michael Irvin,Athlete,0
+9,5,Michael Irvin,Athlete,0
+9,6,Michael Irvin,Athlete,0
+9,7,Mark Dacascos,Actor/Actress,1
+9,8,Aaron Carter,Singer/Rapper,1
+9,8,Donny Osmond,Singer/Rapper,0
+9,9,Donny Osmond,Singer/Rapper,0
+10,2,Buzz Aldrin,Astronaut,0
+10,3,Buzz Aldrin,Astronaut,1
+10,4,Kate Gosselin,TV Personality,0
+10,5,Kate Gosselin,TV Personality,1
+10,6,Jake Pavelka,TV Personality,1
+10,7,Niecy Nash,Actor/Actress,0
+10,8,Niecy Nash,Actor/Actress,1
+10,9,Chad Ochocinco,Athlete,1
+11,1,David Hasselhoff,Actor/Actress,1
+11,1,Margaret Cho,Comedian,0
+11,1,The Situation,TV Personality,0
+11,2,Michael Bolton,Singer/Rapper,1
+11,3,Margaret Cho,Comedian,1
+11,4,The Situation,TV Personality,1
+11,5,Bristol Palin,TV Personality,0
+11,6,Kurt Warner,Athlete,0
+11,7,Bristol Palin,TV Personality,0
+11,8,Bristol Palin,TV Personality,0
+11,9,Bristol Palin,TV Personality,0
+12,2,Sugar Ray Leonard,Athlete,0
+12,2,Mike Catherwood,Radio Personality,1
+12,2,Wendy Williams,TV Personality,0
+12,3,Wendy Williams,TV Personality,1
+12,4,Kendra Wilkinson,TV Personality,0
+12,5,Ralph Macchio,Actor/Actress,0
+12,5,Petra Nemcova,Model,1
+12,5,Kendra Wilkinson,TV Personality,0
+12,6,Chris Jericho,Athlete,1
+12,7,Kirstie Alley,Actor/Actress,0
+12,7,Romeo,Singer/Rapper,0
+12,8,Ralph Macchio,Actor/Actress,0
+12,9,Ralph Macchio,Actor/Actress,1
+13,1,Metta World Peace (Ron),Athlete,1
+13,2,Chaz Bono,TV Personality,0
+13,3,Chaz Bono,TV Personality,0
+13,4,Carson Kressley,TV Personality,0
+13,5,Carson Kressley,TV Personality,1
+13,6,Chaz Bono,TV Personality,1
+13,7,Nancy Grace,TV Personality,0
+13,8,Nancy Grace,TV Personality,1
+13,9,Hope Solo,Athlete,1
+14,2,Martina Navratilova,Athlete,1
+14,3,Jack Wagner,Actor/Actress,1
+14,3,Sherri Sheperd,Actor/Actress,0
+14,3,Melissa Gilbert,Actor/Actress,0
+14,3,Gavin DeGraw,Singer/Rapper,0
+14,3,Gladys Knight,Singer/Rapper,0
+14,4,Gladys Knight,Singer/Rapper,0
+14,5,Gavin DeGraw,Singer/Rapper,1
+14,6,Gladys Knight,Singer/Rapper,1
+14,7,Melissa Gilbert,Actor/Actress,0
+14,8,Melissa Gilbert,Actor/Actress,1
+14,9,Katherine Jenkins,Singer/Rapper,0
+15,1,Pamela Anderson,Model,1
+15,2,Bristol Palin,TV Personality,0
+15,3,Bristol Palin,TV Personality,0
+15,4,Kirstie Alley,Actor/Actress,0
+15,6,Emmitt Smith,Athlete,0
+15,8,Kirstie Alley,Actor/Actress,1
+15,9,Emmitt Smith,Athlete,1
+16,3,Wynonna Judd,Singer/Rapper,1
+16,4,Victor Ortiz,Athlete,0
+16,4,Lisa Vanderpump,TV Personality,1
+16,5,D. L. Hughley,Comedian,1
+16,5,Andy Dick,Comedian,0
+16,6,Victor Ortiz,Athlete,1
+16,7,Andy Dick,Comedian,1
+16,8,Sean Lowe,TV Personality,1
+16,9,Ingo Rademacher,Actor/Actress,1
+16,10,Jacoby Jones,Athlete,0
+17,2,Bill Nye,TV Personality,0
+17,3,Valerie Harper,Actor/Actress,0
+17,3,Bill Nye,TV Personality,1
+17,4,Valerie Harper,Actor/Actress,1
+17,5,Leah Remini,Actor/Actress,0
+17,7,Bill Engvall,Comedian,0
+17,8,Bill Engvall,Comedian,0
+17,9,Bill Engvall,Comedian,0
+17,10,Bill Engvall,Comedian,0
+17,11,Bill Engvall,Comedian,1
+18,2,Billy Dee Williams,Actor/Actress,0
+18,5,Drew Carey,Comedian,0
+18,6,Candace Cameron Bure,Actor/Actress,0
+18,6,Drew Carey,Comedian,1
+18,7,NeNe Leakes,TV Personality,1
+18,8,James Maslow,Actor/Actress,0
+18,8,Candace Cameron Bure,Actor/Actress,0
+18,8,Meryl Davis,Athlete,0
+18,9,Candace Cameron Bure,Actor/Actress,0
+18,10,Candace Cameron Bure,Actor/Actress,0
+19,1,Betsey Johnson,Fashion Designer,0
+19,2,Michael Waltrip,Racing Driver,0
+19,3,Randy Couture,Athlete,1
+19,4,Jonathan Bennett,Actor/Actress,0
+19,6,Antonio Sabato Jr.,Actor/Actress,0
+19,6,Tommy Chong,Comedian,0
+19,7,Michael Waltrip,Racing Driver,0
+19,8,Michael Waltrip,Racing Driver,1
+19,9,Tommy Chong,Comedian,0
+19,10,Tommy Chong,Comedian,1
+19,11,Bethany Mota,Social Media Personality,1
+20,2,Chris Soules,TV Personality,0
+20,3,Charlotte McKinney,Model,1
+20,3,Patti LaBelle,Singer/Rapper,0
+20,4,Chris Soules,TV Personality,0
+20,5,Robert Herjavec,Entrepreneur,0
+20,6,Robert Herjavec,Entrepreneur,0
+20,7,Robert Herjavec,Entrepreneur,0
+20,7,Chris Soules,TV Personality,0
+20,8,Robert Herjavec,Entrepreneur,1
+20,9,Noah Galloway,Motivational Speaker,0
+21,2,Chaka Khan,Singer/Rapper,1
+21,4,Gary Busey,Actor/Actress,1
+21,6,Paula Deen,TV Personality,1
+21,7,Alek Skarlatos,Military,0
+21,8,Andy Grammer,Singer/Rapper,1
+21,9,Tamar Braxton,Singer/Rapper,0
+21,11,Alek Skarlatos,Military,0
+22,2,Geraldo Rivera,Journalist,1
+22,3,Mischa Barton,Actor/Actress,1
+22,4,Doug Flutie,Athlete,0
+22,6,Doug Flutie,Athlete,1
+22,7,Jodie Sweetin,Actor/Actress,0
+22,8,Wanya Morris,Singer/Rapper,0
+22,9,Antonio Brown,Athlete,1
+23,2,Rick Perry,Politician,0
+23,3,Rick Perry,Politician,1
+23,3,Vanilla Ice,Singer/Rapper,0
+23,4,Babyface,Singer/Rapper,1
+23,6,Amber Rose,Model,1
+23,7,Marilu Henner,Actor/Actress,0
+23,8,Marilu Henner,Actor/Actress,0
+23,9,Marilu Henner,Actor/Actress,1
+23,9,James Hinchcliffe,Racing Driver,0
+23,10,Calvin Johnson Jr.,Athlete,0
+23,11,Jana Kramer,Singer/Rapper,1
+24,2,Mr. T,Actor/Actress,0
+24,2,Chris Kattan,Comedian,1
+24,3,Charo,Actor/Actress,1
+24,3,Mr. T,Actor/Actress,0
+24,3,Bonner Bolton,Athlete,0
+24,4,Mr. T,Actor/Actress,1
+24,5,David Ross,Athlete,0
+24,6,Nick Viall,TV Personality,0
+24,7,Bonner Bolton,Athlete,0
+24,8,Bonner Bolton,Athlete,1
+24,9,David Ross,Athlete,0
+25,2,Barbara Corcoran,Entrepreneur,1
+25,4,Nick Lachey,Singer/Rapper,0
+25,5,Nick Lachey,Singer/Rapper,0
+25,6,Nick Lachey,Singer/Rapper,1
+25,7,Nikki Bella,Athlete,1
+25,8,Drew Scott,TV Personality,0
+25,9,Drew Scott,TV Personality,0
+25,10,Drew Scott,TV Personality,1
+26,1,Kareem Abdul-Jabbar,Athlete,0
+26,2,Kareem Abdul-Jabbar,Athlete,1
+26,3,Jennie Finch Daigle,Athlete,1
+27,1,Joe Amabile,TV Personality,0
+27,2,Joe Amabile,TV Personality,0
+27,3,Joe Amabile,TV Personality,0
+27,4,Joe Amabile,TV Personality,0
+27,6,John Schneider,Actor/Actress,0
+27,7,Joe Amabile,TV Personality,0
+27,8,Bobby Bones,Radio Personality,0
+28,2,Lamar Odom,Athlete,0
+28,4,Lamar Odom,Athlete,1
+28,6,Sean Spicer,Politician,0
+28,7,Sean Spicer,Politician,0
+28,8,Sean Spicer,Politician,0
+28,9,Sean Spicer,Politician,1
+28,10,James Van Der Beek,Actor/Actress,1
+29,2,Skai Jackson,Actor/Actress,0
+29,2,Charles Oakley,Athlete,1
+29,3,Carole Baskin,TV Personality,1
+29,4,Anne Heche,Actor/Actress,1
+29,4,Jesse Metcalfe,Actor/Actress,0
+29,4,Nelly,Singer/Rapper,0
+29,4,Jeannie Mai,TV Personality,0
+29,5,Jesse Metcalfe,Actor/Actress,1
+29,5,Chrishell Stause,Actor/Actress,0
+29,6,Skai Jackson,Actor/Actress,0
+29,7,Monica Aldama,TV Personality,1
+29,8,Nelly,Singer/Rapper,0
+29,9,Nelly,Singer/Rapper,0
+29,10,Nelly,Singer/Rapper,0
+30,2,Martin Kove,Actor/Actress,1
+30,3,Cody Rigsby,Fitness Instructor,0
+30,4,Brian Austin Green,Actor/Actress,1
+30,5,Iman Shumpert,Athlete,0
+30,6,Kenya Moore,TV Personality,1
+30,7,"Mike ""The Miz"" Mizanin",Athlete,1
+30,8,Jimmie Allen,Singer/Rapper,1
+30,9,Cody Rigsby,Fitness Instructor,0
+31,1,Vinny Guadagnino,TV Personality,0
+31,2,Cheryl Ladd,Actor/Actress,0
+31,3,Vinny Guadagnino,TV Personality,0
+31,4,Sam Champion,News Anchor,1
+31,5,Vinny Guadagnino,TV Personality,0
+31,6,Vinny Guadagnino,TV Personality,0
+31,7,Vinny Guadagnino,TV Personality,0
+31,8,Vinny Guadagnino,TV Personality,1
+31,9,Trevor Donovan,Actor/Actress,1
+32,1,Matt Walsh,Comedian,1
+32,1,Tyson Beckford,Model,0
+32,1,Harry Jowsey,TV Personality,0
+32,2,Mauricio Umansky,TV Personality,0
+32,3,Tyson Beckford,Model,1
+32,4,Barry Williams,Actor/Actress,0
+32,4,Alyson Hannigan,Actor/Actress,0
+32,5,Harry Jowsey,TV Personality,0
+32,6,Harry Jowsey,TV Personality,0
+32,7,Harry Jowsey,TV Personality,0
+32,8,Harry Jowsey,TV Personality,0
+32,9,Harry Jowsey,TV Personality,1
+33,2,Eric Roberts,Actor/Actress,0
+33,2,Reginald VelJohnson,Actor/Actress,0
+33,3,Reginald VelJohnson,Actor/Actress,1
+33,4,Dwight Howard ,Athlete,0
+33,5,Dwight Howard ,Athlete,0
+33,5,Stephen Nedoroscik,Athlete,0
+33,5,Phaedra Parks,TV Personality,1
+33,6,Ilona Maher,Athlete,0
+33,7,Dwight Howard ,Athlete,1
+34,2,Corey Feldman,Actor/Actress,1
+34,3,Andy Richter,Comedian,0
+34,3,Lauren Jauregui,Singer/Rapper,1
+34,4,Andy Richter,Comedian,0
+34,6,Andy Richter,Comedian,0
+34,7,Andy Richter,Comedian,0
+34,8,Andy Richter,Comedian,0
+34,9,Andy Richter,Comedian,1
+34,10,Dylan Efron,TV Personality,0
