@@ -38,7 +38,15 @@ SELECT
     c.ballroom_partner,
     ROUND(r.season_avg, 2) AS season_avg,
     c.placement,
-    CASE WHEN c.placement = 1 THEN 'Yes' ELSE 'No' END AS favorite_won
+    CASE WHEN c.placement = 1 THEN 'Yes' ELSE 'No' END AS favorite_won,
+    -- A text label for the dashboard chart "Where the judges' favorite finished".
+    -- 4th-6th are grouped because each happened only once.
+    CASE
+        WHEN c.placement = 1 THEN '1st'
+        WHEN c.placement = 2 THEN '2nd'
+        WHEN c.placement = 3 THEN '3rd'
+        ELSE '4th or lower'
+    END AS finish_label
 FROM ranked AS r
 JOIN couples AS c
     ON r.couple_id = c.couple_id

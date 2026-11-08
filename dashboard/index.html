@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Judges vs. Fans</title>
+<!--
+  Dashboard for "Skill vs. Popularity: Do Judges or Fans Decide Dancing with the Stars?"
+
+  How it works:
+    1. scripts/export_results.py runs the SQL in sql/ and writes data.js (in this folder).
+    2. This page loads data.js, then the <script> at the bottom calculates every number
+       and draws the cards and bar charts. Nothing below is typed in by hand.
+  To view it: double-click this file (it opens in your web browser).
+-->
+<style>
+  /* ---- Colors and fonts, defined once and reused everywhere ---- */
+  :root {
+    --page: #0B1736;        /* deep navy page */
+    --card: #13224A;        /* slightly lighter navy for cards */
+    --card-edge: #24356A;   /* thin card border */
+    --gold: #D4AF37;        /* the one accent color: highlights + headline numbers */
+    --slate: #7C8AA8;       /* every bar that ISN'T highlighted */
+    --track: #1B2C5C;       /* faint "empty" part behind each bar */
+    --ink: #F5F1E6;         /* main text (warm ivory) */
+    --ink-2: #A9B4CC;       /* secondary text */
+    --serif: Georgia, "Times New Roman", serif;
+    --sans: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height: 1.45;
+    /* Three layers, top to bottom: gold sparkles (a see-through image that
+       repeats sideways), a soft "spotlight" glow, then the plain navy color. */
+    background:
+      url("sparkles.png") top center / 1600px auto repeat-x,
+      radial-gradient(ellipse 70% 420px at 50% 0, #1B2D63 0%, rgba(11, 23, 54, 0) 100%),
+      var(--page);
+    min-height: 100vh;
+  }
+
+  .wrap { max-width: 1160px; margin: 0 auto; padding: 40px 24px 32px; }
+
+  /* ---- Header ---- */
+  .eyebrow {
+    margin: 0; color: var(--gold); font-size: 13px; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase;
+  }
+  h1 { margin: 6px 0 4px; font-family: var(--serif); font-weight: normal; font-size: clamp(30px, 5vw, 44px); line-height: 1.1; }
+  .subtitle { margin: 0; color: var(--ink-2); font-size: 17px; }
+  header { padding-bottom: 28px; margin-bottom: 28px; border-bottom: 1px solid rgba(212, 175, 55, 0.45); }
+
+  /* ---- Cards (shared by headline tiles and charts) ---- */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--card-edge);
+    border-radius: 12px;
+    padding: 22px 24px;
+  }
+
+  /* ---- Headline tiles ---- */
+  .tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 18px; }
+  .tile .big { font-family: var(--serif); font-size: 52px; line-height: 1; color: var(--gold); }
+  .tile .label { margin: 10px 0 6px; font-size: 16px; font-weight: 600; }
+  .tile .detail { margin: 0; color: var(--ink-2); font-size: 14px; }
+
+  /* ---- Charts ---- */
+  .charts { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .chart h2 { margin: 0 0 4px; font-size: 17px; font-weight: 600; }
+  .chart .takeaway { margin: 0 0 18px; color: var(--ink-2); font-size: 14px; }
+
+  .bars { display: grid; gap: 4px; }
+  /* One row = label on the left + bar track on the right. The whole row is the
+     hover/focus target, so it's easier to hit than the thin bar itself. */
+  .bar-row {
+    display: grid; grid-template-columns: 128px 1fr; align-items: center; gap: 12px;
+    padding: 5px 6px; border-radius: 6px; cursor: default; outline: none;
+  }
+  .bar-row:hover, .bar-row:focus-visible { background: rgba(255, 255, 255, 0.05); }
+  .bar-row:focus-visible { box-shadow: 0 0 0 2px var(--gold); }
+  .bar-label { font-size: 14px; text-align: right; color: var(--ink); }
+  .bar-track { position: relative; height: 22px; background: var(--track); border-radius: 0 4px 4px 0; }
+  .bar {
+    position: absolute; left: 0; top: 0; bottom: 0;
+    background: var(--slate);
+    border-radius: 0 4px 4px 0;   /* rounded end away from the baseline */
+  }
+  .bar.highlight { background: var(--gold); }
+  .bar-value {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    padding-left: 8px; font-size: 13px; font-weight: 600; color: var(--ink); white-space: nowrap;
+  }
+  .scale-note { margin: 10px 0 0; color: var(--ink-2); font-size: 12px; text-align: right; }
+
+  /* "See the numbers" table under each chart */
+  details { margin-top: 14px; font-size: 13px; color: var(--ink-2); }
+  summary { cursor: pointer; color: var(--ink); }
+  table { width: 100%; margin-top: 10px; border-collapse: collapse; }
+  th, td { padding: 5px 8px; text-align: left; border-bottom: 1px solid var(--card-edge); }
+  th { color: var(--ink); font-weight: 600; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+  /* Tooltip that follows the hovered bar */
+  .tooltip {
+    position: fixed; z-index: 10; pointer-events: none; max-width: 260px;
+    padding: 8px 10px; border-radius: 8px; font-size: 13px;
+    background: #F5F1E6; color: #0B1736; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+    opacity: 0; transition: opacity 0.12s;
+  }
+  .tooltip.show { opacity: 1; }
+  .tooltip strong { display: block; }
+
+  /* ---- Footer ---- */
+  footer { margin-top: 26px; color: var(--ink-2); font-size: 13px; }
+  footer p { margin: 0 0 6px; }
+  footer a { color: var(--gold); }
+  .error { padding: 16px; border: 1px solid var(--gold); border-radius: 8px; }
+
+  /* ---- Smaller screens: stack everything in one column ---- */
+  @media (max-width: 900px) { .charts { grid-template-columns: 1fr; } }
+  @media (max-width: 760px) {
+    .tiles { grid-template-columns: 1fr; }
+    .wrap { padding: 28px 16px 24px; }
+    .bar-row { grid-template-columns: 104px 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <p class="eyebrow">Dancing with the Stars &middot; Seasons 1&ndash;34</p>
+    <h1>Skill vs. Popularity</h1>
+    <p class="subtitle">Do the judges or the fans decide who wins?</p>
+  </header>
+
+  <main id="app">
+    <!-- The script below fills this in. If you see this message, data.js didn't load. -->
+    <p class="error">No data found. In the project folder, run <code>py scripts/export_results.py</code>, then refresh this page.</p>
+  </main>
+
+  <footer>
+    <p><strong>Source:</strong> COMAP 2026 MCM Problem C, &ldquo;Data with the Stars&rdquo; (421 celebrity&ndash;pro couples, 34 U.S. seasons).</p>
+    <p><strong>Caveat:</strong> fan vote totals are never published, so fan influence is <em>inferred</em> from the gap between judge scores and results, not measured.</p>
+    <p><strong>Definitions:</strong> judges&rsquo; favorite = highest season-average judge score. Elimination weeks only; when couples tie for lowest, the week counts as &ldquo;sent home&rdquo; if any of them left. Analysis in Python + SQLite.</p>
+  </footer>
+</div>
+
+<div class="tooltip" id="tooltip" role="tooltip"></div>
+
+<!-- The data, created by scripts/export_results.py -->
+<script src="data.js"></script>
+
+<script>
+(function () {
+  const data = window.DWTS_DATA;
+  if (!data) return;   // data.js missing: leave the "No data found" message showing
+
+  // ---------- Small helpers ----------
+  const pct = (part, whole) => Math.round((100 * part) / whole);   // e.g. 14, 34 -> 41
+  const el = (tag, className, text) => {
+    const node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text !== undefined) node.textContent = text;
+    return node;
+  };
+
+  // ---------- Numbers for the three headline tiles ----------
+  const q1 = data.q1_summary[0];
+  const q2 = data.q2_summary[0];
+  const byType = data.q3_saved_by_type;
+  const tv = byType.find(r => r.industry_group === "TV Personality");
+  const actors = byType.find(r => r.industry_group === "Actor/Actress");
+
+  const tiles = [
+    { big: pct(q1.favorite_won, q1.seasons) + "%",
+      label: "of judges’ favorites won their season",
+      detail: `${q1.favorite_won} of ${q1.seasons} seasons` },
+    { big: pct(q2.lowest_saved, q2.elimination_weeks) + "%",
+      label: "of elimination weeks, the lowest-scored couple survived",
+      detail: `${q2.lowest_saved} of ${q2.elimination_weeks} elimination weeks` },
+    { big: pct(tv.times_saved, tv.times_lowest) + "%",
+      label: "of the time TV personalities were saved after scoring lowest",
+      detail: `vs. ${pct(actors.times_saved, actors.times_lowest)}% for actors` },
+  ];
+
+  // ---------- Chart 1: where the judges' favorite finished ----------
+  const order = ["1st", "2nd", "3rd", "4th or lower"];
+  const finishes = order.map(label => {
+    const seasons = data.q1_favorite_by_season.filter(r => r.finish_label === label);
+    return {
+      label,
+      value: seasons.length,
+      text: String(seasons.length),
+      highlight: label === "1st",
+      tip: `${seasons.length} season${seasons.length === 1 ? "" : "s"}: ` +
+           seasons.map(r => `S${r.season} ${r.celebrity_name}`).join(", "),
+    };
+  });
+  const topThree = finishes.slice(0, 3).reduce((sum, r) => sum + r.value, 0);
+
+  // ---------- Chart 2: save rate by celebrity type (already sorted by SQL) ----------
+  const types = byType.map(r => ({
+    label: r.industry_group,
+    value: r.pct_saved,
+    text: Math.round(r.pct_saved) + "%",
+    highlight: r.industry_group === "TV Personality",
+    tip: `Saved ${r.times_saved} of the ${r.times_lowest} times they scored lowest`,
+  }));
+
+  // ---------- Build the page ----------
+  const app = document.getElementById("app");
+  app.innerHTML = "";
+
+  const tileGrid = el("section", "tiles");
+  tileGrid.setAttribute("aria-label", "Headline findings");
+  tiles.forEach(t => {
+    const card = el("div", "card tile");
+    card.append(el("div", "big", t.big), el("p", "label", t.label), el("p", "detail", t.detail));
+    tileGrid.append(card);
+  });
+
+  const charts = el("section", "charts");
+  charts.append(
+    barChart({
+      title: "Where the judges’ favorite finished",
+      takeaway: `${topThree} of ${q1.seasons} favorites reached the top 3, but only ${q1.favorite_won} won. The fans decide the final.`,
+      rows: finishes,
+      // A little headroom past the longest bar so its number label fits inside the card
+      max: Math.max(...finishes.map(r => r.value)) * 1.12,
+      scaleNote: "Number of seasons",
+      table: { head: ["Season", "Judges’ favorite", "Finished"],
+               rows: data.q1_favorite_by_season.map(r => [r.season, r.celebrity_name, r.finish_label]) },
+    }),
+    barChart({
+      title: "Saved after scoring lowest, by celebrity type",
+      takeaway: "Stars with built-in fan bases (TV personalities, singers) were saved most often.",
+      rows: types,
+      max: 100,   // percentages: bars use the full 0-100% scale so lengths stay honest
+      scaleNote: "Bar length = % saved (full width = 100%)",
+      table: { head: ["Celebrity type", "Times lowest", "Times saved", "% saved"],
+               rows: byType.map(r => [r.industry_group, r.times_lowest, r.times_saved, r.pct_saved + "%"]) },
+    })
+  );
+
+  app.append(tileGrid, charts);
+
+  // ---------- A reusable horizontal bar chart ----------
+  function barChart({ title, takeaway, rows, max, scaleNote, table }) {
+    const card = el("article", "card chart");
+    card.append(el("h2", null, title), el("p", "takeaway", takeaway));
+
+    const list = el("div", "bars");
+    rows.forEach(r => {
+      const row = el("div", "bar-row");
+      row.tabIndex = 0;   // lets keyboard users Tab to each bar and see its tooltip
+      row.setAttribute("aria-label", `${r.label}: ${r.text}. ${r.tip}`);
+
+      const track = el("div", "bar-track");
+      const share = (r.value / max) * 100;
+      const bar = el("div", "bar" + (r.highlight ? " highlight" : ""));
+      bar.style.width = share + "%";
+      const value = el("span", "bar-value", r.text);
+      value.style.left = share + "%";
+      track.append(bar, value);
+
+      row.append(el("div", "bar-label", r.label), track);
+      row.addEventListener("pointerenter", () => showTip(row, r));
+      row.addEventListener("focus", () => showTip(row, r));
+      row.addEventListener("pointerleave", hideTip);
+      row.addEventListener("blur", hideTip);
+      list.append(row);
+    });
+    card.append(list, el("p", "scale-note", scaleNote));
+
+    // "See the numbers": the same data as a plain table
+    const details = el("details");
+    details.append(el("summary", null, "See the numbers"));
+    const tbl = el("table");
+    const headRow = el("tr");
+    table.head.forEach((h, i) => headRow.append(el("th", typeof table.rows[0][i] === "number" ? "num" : null, h)));
+    tbl.append(headRow);
+    table.rows.forEach(cells => {
+      const tr = el("tr");
+      cells.forEach(c => tr.append(el("td", typeof c === "number" ? "num" : null, String(c))));
+      tbl.append(tr);
+    });
+    details.append(tbl);
+    card.append(details);
+    return card;
+  }
+
+  // ---------- Tooltip ----------
+  const tip = document.getElementById("tooltip");
+  function showTip(row, r) {
+    tip.innerHTML = "";
+    tip.append(el("strong", null, `${r.label}: ${r.text}`), document.createTextNode(r.tip));
+    const box = row.getBoundingClientRect();
+    tip.classList.add("show");
+    const left = Math.min(box.left + 140, window.innerWidth - tip.offsetWidth - 12);
+    tip.style.left = Math.max(12, left) + "px";
+    tip.style.top = (box.bottom + 6) + "px";
+  }
+  function hideTip() { tip.classList.remove("show"); }
+})();
+</script>
+</body>
+</html>
